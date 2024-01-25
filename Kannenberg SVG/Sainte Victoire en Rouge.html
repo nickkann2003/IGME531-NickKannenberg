@@ -192,6 +192,20 @@
             return `<path d="${moveTo(x, y)} h ${w} v ${h} h ${-w} Z" stroke="${stroke}" fill="${fill}"/>`;
         }
 
+
+        // Transform Controls
+        const scale = (shape, factor) => {
+            return `<g transform="scale(${factor}, ${factor})">
+                        ${shape}
+                    </g>`;
+        }
+
+        const rotate = (shape,  rotation) => {
+            return `<g transform="rotate(${rotation})">
+                        ${shape}
+                    </g>`;
+        }
+
         /*
         Move Syntax: "M x y"
         Arc Syntax: "A x-radius y-radius rotation large-flag sweep-flag x y"
