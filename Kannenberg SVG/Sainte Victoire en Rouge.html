@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <svg id="one">
+    </svg>
+    <svg id="two">
+    </svg>
+    <svg id="three">
+    </svg>
+    <script>
+        const victoireSvg = () => {
+            return `
+            <svg width="500px" height="500px" viewbox="0 0 100 100">
+                <g>
+                    ${rect(0,0,100,100, "none", "#efeeec")}
+                </g>
+                <g transform="rotate(-25)">
+                    ${rect(2, 13, 20, 20, "none", "#6b2933")}
+                </g>
+                <g transform="rotate(3)">
+                    ${rect(4, 30, 20, 20, "none", "#c0312d")}
+                </g>
+                <g transform="rotate(-2)">
+                    ${rect(25, 6, 20, 20, "none", "#bf2b2b")}
+                </g>
+                <g transform="rotate(-25)">
+                    ${rect(10, 57, 20, 20, "none", "#6b2933")}
+                </g>
+                <g transform="rotate(5)">
+                    ${rect(48, 34, 20, 20, "none", "#6b2933")}
+                </g>
+                <g transform="rotate(-8)">
+                    ${rect(31, 28, 20, 20, "none", "#e94039")}
+                </g>
+                <g transform="rotate(45)">
+                    ${rect(77.5, 0, 20, 20, "none", "#c2292b")}
+                </g>
+                <g transform="rotate(20)">
+                    ${rect(76, 34, 20, 20, "none", "#e72525")}
+                </g>
+                <g transform="rotate(-45)">
+                    ${rect(-17, 23, 20, 20, "none", "#e94039")}
+                </g>
+            </svg>
+            `;
+        }
+
+        const variant1Svg = () => {
+            return `
+            <svg width="500px" height="500px" viewbox="0 0 100 100">
+                <g>
+                    ${rect(0,0,100,100, "none", "#efeeec")}
+                </g>
+                <g transform="rotate(-25)">
+                    ${circle(2, 13, 20, 10, "none", "#6b2933")}
+                </g>
+                <g transform="rotate(3)">
+                    ${circle(4, 30, 10, "none", "#c0312d")}
+                </g>
+                <g transform="rotate(-2)">
+                    ${circle(25, 6, 10, "none", "#bf2b2b")}
+                </g>
+                <g transform="rotate(-25)">
+                    ${circle(10, 57, 10, "none", "#6b2933")}
+                </g>
+                <g transform="rotate(5)">
+                    ${circle(48, 34, 10, "none", "#6b2933")}
+                </g>
+                <g transform="rotate(-8)">
+                    ${circle(31, 28, 10, "none", "#e94039")}
+                </g>
+                <g transform="rotate(45)">
+                    ${circle(77.5, 0, 10, "none", "#c2292b")}
+                </g>
+                <g transform="rotate(20)">
+                    ${circle(76, 34, 10, "none", "#e72525")}
+                </g>
+                <g transform="rotate(-45)">
+                    ${circle(-17, 23, 10, "none", "#e94039")}
+                </g>
+            </svg>
+            `;
+        }
+
+        const variant2Svg = () => {
+            return `
+            <svg width="500px" height="500px" viewbox="0 0 100 100">
+                <g>
+                    ${rect(0,0,100,100, "none", "#efeeec")}
+                </g>
+                <g transform="skewX(-30) translate(50)">
+                    <g transform="rotate(-25)">
+                        ${rect(2, 13, 20, 20, "none", "#383838")}
+                    </g>
+                    <g transform="rotate(3)">
+                        ${rect(4, 30, 20, 20, "none", "#383838")}
+                    </g>
+                    <g transform="rotate(-2)">
+                        ${rect(25, 6, 20, 20, "none", "#383838")}
+                    </g>
+                    <g transform="rotate(-25)">
+                        ${rect(10, 57, 20, 20, "none", "#383838")}
+                    </g>
+                    <g transform="rotate(5)">
+                        ${rect(48, 34, 20, 20, "none", "#383838")}
+                    </g>
+                    <g transform="rotate(-8)">
+                        ${rect(31, 28, 20, 20, "none", "#383838")}
+                    </g>
+                    <g transform="rotate(45)">
+                        ${rect(77.5, 0, 20, 20, "none", "#383838")}
+                    </g>
+                    <g transform="rotate(20)">
+                        ${rect(76, 34, 20, 20, "none", "#383838")}
+                    </g>
+                    <g transform="rotate(-45)">
+                        ${rect(-17, 23, 20, 20, "none", "#383838")}
+                    </g>
+                </g>
+                <g transform="rotate(-25)">
+                    ${rect(2, 13, 20, 20, "none", "#6b2933")}
+                </g>
+                <g transform="rotate(3)">
+                    ${rect(4, 30, 20, 20, "none", "#c0312d")}
+                </g>
+                <g transform="rotate(-2)">
+                    ${rect(25, 6, 20, 20, "none", "#bf2b2b")}
+                </g>
+                <g transform="rotate(-25)">
+                    ${rect(10, 57, 20, 20, "none", "#6b2933")}
+                </g>
+                <g transform="rotate(5)">
+                    ${rect(48, 34, 20, 20, "none", "#6b2933")}
+                </g>
+                <g transform="rotate(-8)">
+                    ${rect(31, 28, 20, 20, "none", "#e94039")}
+                </g>
+                <g transform="rotate(45)">
+                    ${rect(77.5, 0, 20, 20, "none", "#c2292b")}
+                </g>
+                <g transform="rotate(20)">
+                    ${rect(76, 34, 20, 20, "none", "#e72525")}
+                </g>
+                <g transform="rotate(-45)">
+                    ${rect(-17, 23, 20, 20, "none", "#e94039")}
+                </g>
+            </svg>
+            `;
+        }
+
+
+        // Moves to a given point
+        const moveTo = (x, y) => {
+            return `M ${x} ${y}`;
+        }
+
+        // Creates a circle at given point with radius
+        const circle = (x, y, radius, stroke, fill) => {
+            return `<path d="${moveTo(x,y)} a ${radius} ${radius} 0 1 0 ${-radius*2} 0 ${moveTo(x,y)} a ${radius} ${radius} 0 1 1 ${-radius*2} 0" stroke="${stroke}" fill="${fill}"/>`
+        }
+
+        // Creates an ellipse at given point with x and y radius
+        const ellipse = (x, y, rx, ry, stroke, fill) => {
+            return `<path d="${moveTo(x,y)} a ${rx} ${ry} 0 1 0 ${-rx*2} 0 ${moveTo(x,y)} a ${rx} ${ry} 0 1 1 ${-rx*2} 0" stroke="${stroke}" fill="${fill}"/>`
+        }
+
+        // Creates a polygon out of an array of points
+        const polygon = (pointArr, stroke, fill) => {
+            let pth = `M ${pointArr[0]} ${pointArr[1]}`;
+            for(let i = 2; i < pointArr.length; i += 2){
+                if(i%2==0){
+                    pth += `L ${pointArr[i]} ${pointArr[i+1]}`;
+                }
+            }
+            return `<path d="${pth} Z" stroke="${stroke}" fill="${fill}"/>`
+        }
+
+        // Creates a line from a given point to another point
+        const line = (x1, y1, x2, y2, stroke, fill) => {
+            return `<path d="${moveTo(x1, y1)} L ${x2} ${y2}" stroke="${stroke}" fill="${fill}"/>`
+        }
+
+        // Creates a rect at a given point with width and height
+        const rect = (x, y, w, h, stroke, fill) => {
+            return `<path d="${moveTo(x, y)} h ${w} v ${h} h ${-w} Z" stroke="${stroke}" fill="${fill}"/>`;
+        }
+
+        /*
+        Move Syntax: "M x y"
+        Arc Syntax: "A x-radius y-radius rotation large-flag sweep-flag x y"
+        Line Syntax: "L x y"
+        Alt Line Syntax: "l x-movement y-movement"
+        Bezier Curve Syntax (Quad): "Q x1 y1 x y"
+        Organic Curve: "T x y"
+        Polyline: "x1,y1 x2,y2 x3,y3 etc."
+        Group Syntax: "<g> </g>"
+        */
+
+        const vSvg = victoireSvg();
+        document.querySelector("#one").outerHTML = vSvg;
+
+        const v1Svg = variant1Svg();
+        document.querySelector('#two').outerHTML = v1Svg;
+
+        const v2Svg = variant2Svg();
+        document.querySelector('#three').outerHTML = v2Svg;
+
+    </script>
+</body>
+
+</html>

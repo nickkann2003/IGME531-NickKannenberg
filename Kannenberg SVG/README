@@ -1,0 +1,11 @@
+Nick Kannenberg Toolkit
+
+This is an html file that can be opened in any browser to run
+
+The primitve components are stored in the script section of the html file
+
+In terms of design decisions, the circles and ellipses are made of two arcs,
+and all basic components are created as their own path
+
+The variants are testing a different shape, and testing out displaying a 
+shadow of the original piece
