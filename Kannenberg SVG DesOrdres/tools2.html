@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="svgs">
+
+    </div>
+    <script>
+
+        // Viewbox variables
+        const vbVars = { x: -10, y: -10, w: 110, h: 200 };
+
+        // Random vars for DesOrdres, lower values results in higher randomness earlier
+        const dORandomVars = {r: 2, x: 10, y:20}
+
+        // Schotter
+        const schotter = () => {
+            let sqrs = Array.from({ length: 150 }).map((_, i) => {
+                return translate(
+                    rotateP(
+                        rect({ x: (i % 9) * 9 + 5, y: Math.floor(i / 9) * 9 + 5, w: 9, h: 9, stroke: "black", fill: "none" }, 0.4),
+                        (i % 9) * 9 + 5,
+                        Math.floor(i / 9) * 9 + 5,
+                        Math.random() * i / (dORandomVars.r) - i / (dORandomVars.r*2)),
+                    Math.random()*i/(dORandomVars.x) - i/(dORandomVars.x*2),
+                    Math.random()*i/(dORandomVars.y) - i/(dORandomVars.y*2)
+                )
+            });
+            sqrs = group(sqrs);
+            return `<svg width="500px" height="500px" viewbox="${vbVars.x}, ${vbVars.y}, ${vbVars.w}, ${vbVars.h}">
+                        ${sqrs}
+                    </svg>`;
+        }
+
+        // Schotter var 1
+        const schotterVar1 = () => {
+            let sqrs = Array.from({ length: 150 }).map((_, i) => {
+                return translate(
+                    rotateP(
+                        rect({ x: (i % 9) * 9 + 5, y: Math.floor(i / 9) * 9 + 5, w: 9, h: 9, stroke: "black", fill: "none" }, 0.4),
+                        (i % 9) * 9 + 5,
+                        Math.floor(i / 9) * 9 + 5,
+                        Math.random() * i / (dORandomVars.r*3) - i / (dORandomVars.r*6)),
+                    Math.random()*i/(dORandomVars.x*3) - i/(dORandomVars.x*6),
+                    Math.random()*i/(dORandomVars.y*3) - i/(dORandomVars.y*6)
+                )
+            });
+            sqrs = group(sqrs);
+            return `<svg width="500px" height="500px" viewbox="${vbVars.x}, ${vbVars.y}, ${vbVars.w}, ${vbVars.h}">
+                        ${sqrs}
+                    </svg>`;
+        }
+
+        //------------------ Tools ------------------------
+
+        // Moves to a given point
+        const moveTo = (x, y) => {
+            return `M ${x} ${y}`;
+        }
+
+        // Creates a group from a list of elements
+        const group = (elems) => {
+            return `<g>${elems.join('\n]')}</g>`
+        }
+
+        // Creates a line from a given point to another point
+        const line = ({ x1, y1, x2, y2, stroke, fill }) => {
+            return `<path d="${moveTo(x1, y1)} L ${x2} ${y2}" stroke="${stroke}" fill="${fill}"/>`
+        }
+
+        // Creates a rect at a given point with width and height
+        const rect = ({ x, y, w, h, stroke, fill }, strokeWidth=1) => {
+            return `<path d="${moveTo(x - (w / 2), y - (h / 2))} h ${w} v ${h} h ${-w} Z" stroke="${stroke}" fill="${fill}" stroke-width="${strokeWidth}"/>`;
+        }
+
+        // Creates a circle at given point with radius
+        const circle = ({ x, y, radius, stroke, fill }) => {
+            return `<path d="${moveTo(x, y)} a ${radius} ${radius} 0 1 0 ${-radius * 2} 0 ${moveTo(x, y)} a ${radius} ${radius} 0 1 1 ${-radius * 2} 0" stroke="${stroke}" fill="${fill}"/>`
+        }
+
+        // Creates an ellipse at given point with x and y radius
+        const ellipse = ({ x, y, rx, ry, stroke, fill }) => {
+            return `<path d="${moveTo(x, y)} a ${rx} ${ry} 0 1 0 ${-rx * 2} 0 ${moveTo(x, y)} a ${rx} ${ry} 0 1 1 ${-rx * 2} 0" stroke="${stroke}" fill="${fill}"/>`
+        }
+
+        // Creates a polygon out of an array of points
+        const polygon = (pointArr, stroke, fill) => {
+            let pth = `M ${pointArr[0]} ${pointArr[1]}`;
+            for (let i = 2; i < pointArr.length; i += 2) {
+                if (i % 2 == 0) {
+                    pth += `L ${pointArr[i]} ${pointArr[i + 1]}`;
+                }
+            }
+            return `<path d="${pth} Z" stroke="${stroke}" fill="${fill}"/>`
+        }
+
+        // Transform Controls
+        const scale = (shape, factor) => {
+            return `<g transform="scale(${factor}, ${factor})">
+                        ${shape}
+                    </g>`;
+        }
+
+        const rotate = (shape, rotation) => {
+            return rotateP(shape, 0, 0, rotation);
+        }
+
+        const rotateP = (shape, x, y, rotation) => {
+            return `
+                        <g transform="rotate(${rotation}, ${x}, ${y})">
+                            ${shape}
+                        </g>`
+                ;
+        }
+
+        const translate = (shape, x, y) => {
+            return `
+                <g transform="translate(${x}, ${y})">
+                    ${shape}
+                </g>
+            `;
+        }
+
+        // SVG placed into html
+        const allSvgs = [
+            schotter(),
+            schotterVar1()
+        ];
+        document.querySelector("#svgs").innerHTML = allSvgs.map((svg) => {return `${svg}`});
+
+    </script>
+</body>
+
+</html>

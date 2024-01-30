@@ -15,6 +15,7 @@
     <svg id="three">
     </svg>
     <script>
+        // victoire en rouge
         const victoireSvg = () => {
             return `
             <svg width="500px" height="500px" viewbox="0 0 100 100">
@@ -51,7 +52,7 @@
             </svg>
             `;
         }
-
+        // victoire en circle
         const variant1Svg = () => {
             return `
             <svg width="500px" height="500px" viewbox="0 0 100 100">
@@ -88,7 +89,7 @@
             </svg>
             `;
         }
-
+        // victoire en shadow
         const variant2Svg = () => {
             return `
             <svg width="500px" height="500px" viewbox="0 0 100 100">
@@ -155,6 +156,7 @@
             `;
         }
 
+        //------------------ Tools ------------------------
 
         // Moves to a given point
         const moveTo = (x, y) => {
@@ -189,7 +191,7 @@
 
         // Creates a rect at a given point with width and height
         const rect = (x, y, w, h, stroke, fill) => {
-            return `<path d="${moveTo(x, y)} h ${w} v ${h} h ${-w} Z" stroke="${stroke}" fill="${fill}"/>`;
+            return `<path d="${moveTo(x-(w/2), y-(h/2))} h ${w} v ${h} h ${-w} Z" stroke="${stroke}" fill="${fill}"/>`;
         }
 
 
