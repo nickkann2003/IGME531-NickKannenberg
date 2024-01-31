@@ -17,7 +17,7 @@
         const vbVars = { x: -10, y: -10, w: 110, h: 200 };
 
         // Random vars for DesOrdres, lower values results in higher randomness earlier
-        const dORandomVars = {r: 2, x: 10, y:20}
+        const dORandomVars = { r: 2, x: 10, y: 20 }
 
         // Schotter
         const schotter = () => {
@@ -27,9 +27,9 @@
                         rect({ x: (i % 9) * 9 + 5, y: Math.floor(i / 9) * 9 + 5, w: 9, h: 9, stroke: "black", fill: "none" }, 0.4),
                         (i % 9) * 9 + 5,
                         Math.floor(i / 9) * 9 + 5,
-                        Math.random() * i / (dORandomVars.r) - i / (dORandomVars.r*2)),
-                    Math.random()*i/(dORandomVars.x) - i/(dORandomVars.x*2),
-                    Math.random()*i/(dORandomVars.y) - i/(dORandomVars.y*2)
+                        Math.random() * i / (dORandomVars.r) - i / (dORandomVars.r * 2)),
+                    Math.random() * i / (dORandomVars.x) - i / (dORandomVars.x * 2),
+                    Math.random() * i / (dORandomVars.y) - i / (dORandomVars.y * 2)
                 )
             });
             sqrs = group(sqrs);
@@ -38,7 +38,7 @@
                     </svg>`;
         }
 
-        // Schotter var 1
+        // Schotter var 1 Stable
         const schotterVar1 = () => {
             let sqrs = Array.from({ length: 150 }).map((_, i) => {
                 return translate(
@@ -46,13 +46,168 @@
                         rect({ x: (i % 9) * 9 + 5, y: Math.floor(i / 9) * 9 + 5, w: 9, h: 9, stroke: "black", fill: "none" }, 0.4),
                         (i % 9) * 9 + 5,
                         Math.floor(i / 9) * 9 + 5,
-                        Math.random() * i / (dORandomVars.r*3) - i / (dORandomVars.r*6)),
-                    Math.random()*i/(dORandomVars.x*3) - i/(dORandomVars.x*6),
-                    Math.random()*i/(dORandomVars.y*3) - i/(dORandomVars.y*6)
+                        Math.random() * i / (dORandomVars.r * 3) - i / (dORandomVars.r * 6)),
+                    Math.random() * i / (dORandomVars.x * 3) - i / (dORandomVars.x * 6),
+                    Math.random() * i / (dORandomVars.y * 3) - i / (dORandomVars.y * 6)
                 )
             });
             sqrs = group(sqrs);
             return `<svg width="500px" height="500px" viewbox="${vbVars.x}, ${vbVars.y}, ${vbVars.w}, ${vbVars.h}">
+                        ${sqrs}
+                    </svg>`;
+        }
+
+        // Schotter var 2 color
+        const schotterVar2 = () => {
+            let sqrs = Array.from({ length: 150 }).map((_, i) => {
+                let color = "#";
+                for (let j = 0; j < 3; j++) {
+                    color += String(Math.floor(Math.random() * ((i + 30) / 2))).padStart(2, '0');
+                }
+                return translate(
+                    rotateP(
+                        rect({ x: (i % 9) * 9 + 5, y: Math.floor(i / 9) * 9 + 5, w: 9, h: 9, stroke: `${color}`, fill: "none" }, 0.4),
+                        (i % 9) * 9 + 5,
+                        Math.floor(i / 9) * 9 + 5,
+                        Math.random() * i / (dORandomVars.r / 2) - i / (dORandomVars.r)),
+                    Math.random() * i / (dORandomVars.x / 2) - i / (dORandomVars.x),
+                    Math.random() * i / (dORandomVars.y / 2) - i / (dORandomVars.y)
+                )
+            });
+            sqrs = group(sqrs);
+            return `<svg width="500px" height="500px" viewbox="${vbVars.x}, ${vbVars.y}, ${vbVars.w}, ${vbVars.h}">
+                        ${sqrs}
+                    </svg>`;
+        }
+
+        // Schotter var 3 circles
+        const schotterVar3 = () => {
+            let sqrs = Array.from({ length: 150 }).map((_, i) => {
+                return translate(
+                    rotateP(
+                        ellipse({ x: (i % 9) * 9 + 5, y: Math.floor(i / 9) * 9 + 5, rx: Math.random() * i / (dORandomVars.r * 10) + 8, ry: Math.random() * i / (dORandomVars.r * 10) + 8, stroke: "black", fill: "none" }, 0.4),
+                        (i % 9) * 9 + 5,
+                        Math.floor(i / 9) * 9 + 5,
+                        Math.random() * i / (dORandomVars.r / 2) - i / (dORandomVars.r)),
+                    Math.random() * i / (dORandomVars.x / 2) - i / (dORandomVars.x),
+                    Math.random() * i / (dORandomVars.y / 2) - i / (dORandomVars.y)
+                )
+            });
+            sqrs = group(sqrs);
+            return `<svg width="500px" height="500px" viewbox="${vbVars.x}, ${vbVars.y}, ${vbVars.w}, ${vbVars.h}">
+                        ${sqrs}
+                    </svg>`;
+        }
+
+        const desOrdres = () => {
+            let sqrs = Array.from({ length: (17 * 17) }).map((_, i) => {
+                // Size, Square X/Y, Random val for point randomness of each square
+                let sqSize = 5;
+                let sqx = i % 17 * sqSize;
+                let sqy = Math.floor(i / 17) * sqSize;
+                let randomVal = Math.random() * 0.2 + 0.05;
+                let polys = Array.from({ length: 10 }).map((_, j) => {
+                    // Size adjustment should not affect first square
+                    let sz = sqSize;
+                    sqSize -= Math.random() * 0.9 + 0.05
+                    // Scaled random value
+                    let srv = sqSize * randomVal;
+                    return polygon([
+                        (sqx - sz / 2) + Math.random() * srv - srv / 2, (sqy - sz / 2) + Math.random() * srv - srv / 2,
+                        (sqx + sz / 2) + Math.random() * srv - srv / 2, (sqy - sz / 2) + Math.random() * srv - srv / 2,
+                        (sqx + sz / 2) + Math.random() * srv - srv / 2, (sqy + sz / 2) + Math.random() * srv - srv / 2,
+                        (sqx - sz / 2) + Math.random() * srv - srv / 2, (sqy + sz / 2) + Math.random() * srv - srv / 2], "#111111", "none", 0.1);
+                });
+                sqSize = 5;
+                return group(polys);
+            });
+            sqrs = group(sqrs);
+            return `<svg width="800px" height="800px" viewbox="-10,-10,110,110">
+                        ${sqrs}
+                    </svg>`;
+        }
+
+        // Var 1, circles
+        const desOrdresVar1 = () => {
+            let sqrs = Array.from({ length: (17 * 17) }).map((_, i) => {
+                // Size, Square X/Y, Random val for point randomness of each square
+                let sqSize = 5;
+                let sqx = i % 17 * sqSize;
+                let sqy = Math.floor(i / 17) * sqSize;
+                let randomVal = Math.random() * 0.2 + 0.05;
+                let polys = Array.from({ length: 10 }).map((_, j) => {
+                    // Size adjustment should not affect first square
+                    let sz = sqSize;
+                    sqSize -= Math.random() * 0.9 + 0.05
+                    // Scaled random value
+                    let srv = sqSize * randomVal;
+
+                    let color = "none";
+                    return ellipse(
+                        {
+                            x: sqx,
+                            y: sqy,
+                            rx: sz / 2 + Math.random() * srv - srv / 2,
+                            ry: sz / 2 + Math.random() * srv - srv / 2,
+                            stroke: "black",
+                            fill: `${color}`
+                        },
+                        0.1);
+                });
+                sqSize = 5;
+                return group(polys);
+            });
+            sqrs = group(sqrs);
+            return `<svg width="800px" height="800px" viewbox="-10,-10,110,110">
+                        ${sqrs}
+                    </svg>`;
+        }
+
+        // Var 2, heatmap
+        const desOrdresVar2 = () => {
+            const heatMap = [
+                [8, 7, 6, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 
+                [7, 6, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 
+                [6, 4, 3, 3, 15, 3, 3, 3, 3, 3, 3, 3, 15, 3, 3, 3, 3], 
+                [4, 3, 3, 3, 15, 3, 3, 3, 3, 3, 3, 3, 15, 3, 3, 3, 3], 
+                [3, 3, 3, 3, 15, 3, 3, 3, 3, 3, 3, 3, 15, 3, 3, 3, 3], 
+                [3, 3, 3, 3, 15, 3, 3, 3, 3, 3, 3, 3, 15, 3, 3, 3, 3], 
+                [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 
+                [3, 3, 3, 3, 3, 5, 3, 3, 3, 8, 3, 3, 3, 4, 3, 3, 3], 
+                [3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 8, 3, 4, 3, 3, 3, 3], 
+                [3, 3, 3, 3, 3, 3, 3, 3, 3, 8, 3, 3, 3, 3, 3, 3, 3], 
+                [3, 3, 3, 3, 15, 3, 3, 3, 3, 3, 3, 3, 3, 3, 15, 3, 3], 
+                [3, 3, 3, 15, 7, 15, 3, 3, 3, 3, 3, 3, 3, 15, 7, 15, 3], 
+                [3, 3, 3, 15, 7, 7, 15, 3, 3, 3, 3, 3, 15, 7, 7, 15, 3], 
+                [3, 3, 3, 3, 15, 7, 7, 15, 3, 3, 3, 15, 7, 7, 15, 3, 3], 
+                [3, 3, 3, 3, 3, 15, 7, 7, 15, 15, 7, 7, 7, 15, 3, 3, 3], 
+                [3, 3, 3, 3, 3, 3, 15, 7, 7, 7, 7, 7, 15, 3, 3, 3, 3], 
+                [3, 3, 3, 3, 3, 3, 3, 15, 15, 15, 15, 3, 3, 3, 3, 3, 3]
+            ];
+            let sqrs = Array.from({ length: (17 * 17) }).map((_, i) => {
+                // Size, Square X/Y, Random val for point randomness of each square
+                let sqSize = 5;
+                let sqx = i % 17 * sqSize;
+                let sqy = Math.floor(i / 17) * sqSize;
+                let randomVal = Math.random() * 0.2 + 0.05;
+                let length = heatMap[Math.floor(i/17)][i%17];
+                let polys = Array.from({ length: length }).map((_, j) => {
+                    // Size adjustment should not affect first square
+                    let sz = sqSize;
+                    sqSize -= Math.random() * 0.9 + 0.05
+                    // Scaled random value
+                    let srv = sqSize * randomVal;
+                    return polygon([
+                        (sqx - sz / 2) + Math.random() * srv - srv / 2, (sqy - sz / 2) + Math.random() * srv - srv / 2,
+                        (sqx + sz / 2) + Math.random() * srv - srv / 2, (sqy - sz / 2) + Math.random() * srv - srv / 2,
+                        (sqx + sz / 2) + Math.random() * srv - srv / 2, (sqy + sz / 2) + Math.random() * srv - srv / 2,
+                        (sqx - sz / 2) + Math.random() * srv - srv / 2, (sqy + sz / 2) + Math.random() * srv - srv / 2], "#111111", "none", 0.1);
+                });
+                sqSize = 5;
+                return group(polys);
+            });
+            sqrs = group(sqrs);
+            return `<svg width="800px" height="800px" viewbox="-10,-10,110,110">
                         ${sqrs}
                     </svg>`;
         }
@@ -75,7 +230,7 @@
         }
 
         // Creates a rect at a given point with width and height
-        const rect = ({ x, y, w, h, stroke, fill }, strokeWidth=1) => {
+        const rect = ({ x, y, w, h, stroke, fill }, strokeWidth = 1) => {
             return `<path d="${moveTo(x - (w / 2), y - (h / 2))} h ${w} v ${h} h ${-w} Z" stroke="${stroke}" fill="${fill}" stroke-width="${strokeWidth}"/>`;
         }
 
@@ -85,19 +240,19 @@
         }
 
         // Creates an ellipse at given point with x and y radius
-        const ellipse = ({ x, y, rx, ry, stroke, fill }) => {
-            return `<path d="${moveTo(x, y)} a ${rx} ${ry} 0 1 0 ${-rx * 2} 0 ${moveTo(x, y)} a ${rx} ${ry} 0 1 1 ${-rx * 2} 0" stroke="${stroke}" fill="${fill}"/>`
+        const ellipse = ({ x, y, rx, ry, stroke, fill }, strokeWidth = 1) => {
+            return `<path d="${moveTo(x, y)} a ${rx} ${ry} 0 1 0 ${-rx * 2} 0 ${moveTo(x, y)} a ${rx} ${ry} 0 1 1 ${-rx * 2} 0" stroke="${stroke}" fill="${fill}" stroke-width="${strokeWidth}"/>`
         }
 
         // Creates a polygon out of an array of points
-        const polygon = (pointArr, stroke, fill) => {
+        const polygon = (pointArr, stroke, fill, strokeWeight = 1) => {
             let pth = `M ${pointArr[0]} ${pointArr[1]}`;
             for (let i = 2; i < pointArr.length; i += 2) {
                 if (i % 2 == 0) {
                     pth += `L ${pointArr[i]} ${pointArr[i + 1]}`;
                 }
             }
-            return `<path d="${pth} Z" stroke="${stroke}" fill="${fill}"/>`
+            return `<path d="${pth} Z" stroke="${stroke}" fill="${fill}" stroke-width="${strokeWeight}"/>`
         }
 
         // Transform Controls
@@ -130,9 +285,14 @@
         // SVG placed into html
         const allSvgs = [
             schotter(),
-            schotterVar1()
+            schotterVar1(),
+            schotterVar2(),
+            schotterVar3(),
+            desOrdres(),
+            desOrdresVar1(),
+            desOrdresVar2()
         ];
-        document.querySelector("#svgs").innerHTML = allSvgs.map((svg) => {return `${svg}`});
+        document.querySelector("#svgs").innerHTML = allSvgs.map((svg) => { return `${svg}` });
 
     </script>
 </body>
