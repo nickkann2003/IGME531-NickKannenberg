@@ -7,8 +7,8 @@ const moveTo = (x, y) => {
 }
 //#endregion
 //#region Line function - Crates a line from one global point to another
-const line = ({ x1, y1, x2, y2, stroke, fill }) => {
-    return `<path d="${moveTo(x1, y1)} L ${x2} ${y2}" stroke="${stroke}" fill="${fill}"/>`
+const line = ({ x1, y1, x2, y2, stroke, fill }, strokeWidth = 1) => {
+    return `<path d="${moveTo(x1, y1)} L ${x2} ${y2}" stroke="${stroke}" fill="${fill}" stroke-width="${strokeWidth}"/>`
 }
 //#endregion
 //#region Rect function - Creates a rect at given (centered) point, with width and height
