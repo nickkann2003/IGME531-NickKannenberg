@@ -78,18 +78,38 @@ const translate = (shape, x, y) => {
 //#endregion
 
 //#region ------------------ Randonmness/Noise Functions ------------------
+const generateFloatField = (w, h) => {
+    let arr = [];
+    for(let i = 0; i < w; i ++){
+        arr[i] = [];
+        for(let j = 0; j < h; j ++){
+            arr[i].push(Math.random());
+        }
+    }
+    return arr;
+}
 
+const accessFloatField = (arr, x, y) => {
+    return arr[x][y];
+}
 //#endregion
 
 //#region ----------------- Utility/Display Functions --------------------
 //#region Svg To Element function - Sets inner HTML of a given element to a list of given SVGs from array
 const svgToElement = (allSvgs, element) => {
-    element.innerHTML = allSvgs.map((svg) => { return `${svg}` });
+    element.outerHTML = allSvgs.map((svg) => { return `${svg}` });
 }
 //#endregion
 //#region Svg To Element (By ID) function - Sets inner HTML of a given element (By ID) to a list of given SVGs from array
 const svgToElementById = (allSvgs, id) => {
     svgToElement(allSvgs, document.querySelector(`#${id}`));
+}
+//#endregion
+//#region Wrap SVG - Wraps given text in an SVG with given viewbox and size vars
+const wrapSvg = ({x, y, w, h}, pW, pH, svg) => {
+    return `<svg width="${pW}px" height="${pH}px" viewbox="${x}, ${y}, ${w}, ${h}">
+                        ${svg}
+                    </svg>`
 }
 //#endregion
 //#endregion
@@ -100,6 +120,6 @@ export { moveTo, line, rect, circle, ellipse, polygon }
 // Group/Transform Controls
 export { group, scale, rotate, rotateP, translate }
 // Randomness/Noise Functions
-export {}
+export { generateFloatField, accessFloatField}
 // Utility/Display Functions
-export { svgToElement, svgToElementById }
+export { svgToElement, svgToElementById, wrapSvg}
