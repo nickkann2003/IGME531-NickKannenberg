@@ -5,27 +5,44 @@ let noise = perlin.createNoise2D();
 
 let scaleVal = 150;
 
+let cInt = 0;
+let color = "";
+
 // Lines
 let svgLines = '';
 let lineLength = 5;
 let lineWidth = 0;
-for(let i = 0; i < 300; i ++){
-    for(let j = 0; j < 300; j ++){
-        let xRand = Math.random()*0.5-0.5;
-        let yRand = Math.random()*0.5-0.5;
-        let lengthRand = Math.random()*1;
+for (let i = 0; i < 300; i++) {
+    for (let j = 0; j < 300; j++) {
+        let xRand = Math.random() * 0.5 - 0.5;
+        let yRand = Math.random() * 0.5 - 0.5;
+        let lengthRand = Math.random() * 1;
+        lengthRand = noise(i/scaleVal, j/scaleVal);
 
-        let vals = {x: i+xRand, y: j + yRand, l: lineLength+lengthRand, w:lineWidth+(noise(i/scaleVal, j/scaleVal)/2+0.5)*0.15};
+        switch (cInt) {
+            case 0:
+                color = "#6E0D25";
+                break;
+            case 1:
+                color = "#989788";
+                break;
+            case 2:
+                color = "#2D4654";
+                break;
+        }
+        cInt = (cInt + 1) % 3;
 
-        let currAngle = (noise(i/scaleVal,j/scaleVal)+1)/2 * (360);
-        let line = utils.line({x1: vals.x, y1:vals.y+vals.l/2, x2:vals.x, y2:vals.y-vals.l/2, stroke:"black", fill:"black"}, vals.w);
+        let vals = { x: i + xRand, y: j + yRand, l: lineLength + lengthRand, w: lineWidth + (noise(i / scaleVal, j / scaleVal) / 2 + 0.5) * 0.15 };
+
+        let currAngle = (noise(i / scaleVal, j / scaleVal) + 1) / 2 * (360);
+        let line = utils.line({ x1: vals.x, y1: vals.y + vals.l / 2, x2: vals.x, y2: vals.y - vals.l / 2, stroke: color, fill: color }, vals.w);
         line = utils.rotateP(line, vals.x, vals.y, currAngle);
         svgLines += line;
     }
 }
 
 // Wrap SVGS
-svgLines = utils.wrapSvg({x: -5, y:-5, w: 305, h: 305}, 500, 500, svgLines);
+svgLines = utils.wrapSvg({ x: -5, y: -5, w: 305, h: 305 }, 500, 500, svgLines);
 
 // Array of all SVGS
 const allSvgs = [
