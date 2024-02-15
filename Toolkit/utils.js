@@ -16,6 +16,11 @@ const rect = ({ x, y, w, h, stroke, fill }, strokeWidth = 1) => {
     return `<path d="${moveTo(x - (w / 2), y - (h / 2))} h ${w} v ${h} h ${-w} Z" stroke="${stroke}" fill="${fill}" stroke-width="${strokeWidth}"/>`;
 }
 //#endregion
+//#region RectCorner function - Creates a rect at given (corner) point, with width and height
+const rectCorner = ({ x, y, w, h, stroke, fill }, strokeWidth = 1) => {
+    return `<path d="${moveTo(x, y)} h ${w} v ${h} h ${-w} Z" stroke="${stroke}" fill="${fill}" stroke-width="${strokeWidth}"/>`;
+}
+//#endregion
 //#region Circle function - Creates a circle at given (center) point with radius
 const circle = ({ x, y, radius, stroke, fill }) => {
     return `<path d="${moveTo(x, y)} a ${radius} ${radius} 0 1 0 ${-radius * 2} 0 ${moveTo(x, y)} a ${radius} ${radius} 0 1 1 ${-radius * 2} 0" stroke="${stroke}" fill="${fill}"/>`
@@ -116,7 +121,7 @@ const wrapSvg = ({x, y, w, h}, pW, pH, svg) => {
 
 // Exports:
 // Shape creation tools
-export { moveTo, line, rect, circle, ellipse, polygon }
+export { moveTo, line, rect, circle, ellipse, polygon, rectCorner}
 // Group/Transform Controls
 export { group, scale, rotate, rotateP, translate }
 // Randomness/Noise Functions
