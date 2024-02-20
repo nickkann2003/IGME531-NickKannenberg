@@ -25,6 +25,10 @@ const rectCorner = ({ x, y, w, h, stroke, fill }, strokeWidth = 1) => {
 const circle = ({ x, y, radius, stroke, fill }) => {
     return `<path d="${moveTo(x, y)} a ${radius} ${radius} 0 1 0 ${-radius * 2} 0 ${moveTo(x, y)} a ${radius} ${radius} 0 1 1 ${-radius * 2} 0" stroke="${stroke}" fill="${fill}"/>`
 }
+//#region Arc function - Creates an arc from point 1 to point 2
+const arc = ({ x1, y1, x2, y2, cx, cy, stroke, fill }, strokeWeight = 1) => {
+    return `<path d="${moveTo(x1, y1)} Q ${cx} ${cy}, ${x2} ${y2}" stroke="${stroke}" fill="${fill}" stroke-width="${strokeWeight}"/>`
+}
 //#endregion
 //#region Ellipse function - Creates an ellipse at given (centered) point with xRadius and yRadius
 const ellipse = ({ x, y, rx, ry, stroke, fill }, strokeWidth = 1) => {
@@ -121,7 +125,7 @@ const wrapSvg = ({x, y, w, h}, pW, pH, svg) => {
 
 // Exports:
 // Shape creation tools
-export { moveTo, line, rect, circle, ellipse, polygon, rectCorner}
+export { moveTo, line, rect, circle, arc, ellipse, polygon, rectCorner}
 // Group/Transform Controls
 export { group, scale, rotate, rotateP, translate }
 // Randomness/Noise Functions

@@ -43,6 +43,7 @@ let tileBR = (w, h) => {
 }
 
 // Diamonds
+
 let diamondTopLeft = () => {
     let tile = ``;
     tile += utils.arc({x1: 2, y1: 10, x2: 10, y2: 2, cx: 8, cy: 8, stroke: "black", fill: "none"}, 0.25);
@@ -71,43 +72,6 @@ let diamondBottomRight = () => {
     return tile;
 }
 
-// Spades
-let spadeTopLeft = () => {
-    let tile = ``;
-    tile += utils.arc({x1: 2, y1: 10, x2: 6, y2: 6, cx: 3, cy: 6.5, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.arc({x1: 6, y1: 6, x2: 10, y2: 2, cx: 9, cy: 6, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.arc({x1: 0, y1: 2, x2: 2, y2: 0, cx: 1.8, cy: 1.8, stroke: "black", fill: "none"}, 0.25);
-    return tile;
-}
-
-let spadeTopRight = () => {
-    let tile = ``;
-    tile += utils.arc({x1: 8, y1: 10, x2: 4, y2: 6, cx: 7, cy: 6.5, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.arc({x1: 4, y1: 6, x2: 0, y2: 2, cx: 1, cy: 6, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.arc({x1: 10, y1: 2, x2: 8, y2: 0, cx: 8.2, cy: 1.8, stroke: "black", fill: "none"}, 0.25);
-    return tile;
-}
-
-let spadeBottomLeft = () => {
-    let tile = ``;
-    tile += utils.arc({x1: 2, y1: 0, x2: 4, y2: 4, cx: 2, cy: 3, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.arc({x1: 4, y1: 4, x2: 9, y2: 2, cx: 8, cy: 5, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.arc({x1: 9, y1: 2, x2: 3, y2: 8, cx: 9, cy: 8, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.line({x1: 3, y1: 8, x2: 10, y2: 8, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.arc({x1: 0, y1: 8, x2: 2, y2: 10, cx: 1.8, cy: 8.2, stroke: "black", fill: "none"}, 0.25);
-    return tile;
-}
-
-let spadeBottomRight = () => {
-    let tile = ``;
-    tile += utils.arc({x1: 8, y1: 0, x2: 6, y2: 4, cx: 8, cy: 3, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.arc({x1: 6, y1: 4, x2: 1, y2: 2, cx: 2, cy: 5, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.arc({x1: 1, y1: 2, x2: 7, y2: 8, cx: 1, cy: 8, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.line({x1: 7, y1: 8, x2: 0, y2: 8, stroke: "black", fill: "none"}, 0.25);
-    tile += utils.arc({x1: 10, y1: 8, x2: 8, y2: 10, cx: 8.2, cy: 8.2, stroke: "black", fill: "none"}, 0.25);
-    return tile;
-}
-
 let allTiles = () => {
     let svg = ``;
     for (let i = 0; i < 10; i++) {
@@ -116,40 +80,26 @@ let allTiles = () => {
             let tJ = j%2;
             let tt = tI + tJ;
             let random = Math.random();
-            let random2 = Math.random();
             // Random
-            if(random2 < 0.5){
-                if (random < 0.25) {
-                    svg += utils.translate(diamondTopLeft(), i*10, j*10);
-                } else if (random < 0.5) {
-                    svg += utils.translate(diamondTopRight(), i*10, j*10);
-                } else if (random < 0.75) {
-                    svg += utils.translate(diamondBottomLeft(), i*10, j*10);
-                } else {
-                    svg += utils.translate(diamondBottomRight(), i*10, j*10);
-                }
-            }else{
-                if (random < 0.25) {
-                    svg += utils.translate(spadeTopLeft(), i*10, j*10);
-                } else if (random < 0.5) {
-                    svg += utils.translate(spadeTopRight(), i*10, j*10);
-                } else if (random < 0.75) {
-                    svg += utils.translate(spadeBottomLeft(), i*10, j*10);
-                } else {
-                    svg += utils.translate(spadeBottomRight(), i*10, j*10);
-                }
+            if (random < 0.25) {
+                svg += utils.translate(diamondTopLeft(), i*10, j*10);
+            } else if (random < 0.5) {
+                svg += utils.translate(diamondTopRight(), i*10, j*10);
+            } else if (random < 0.75) {
+                svg += utils.translate(diamondBottomLeft(), i*10, j*10);
+            } else {
+                svg += utils.translate(diamondBottomRight(), i*10, j*10);
             }
-            
 
             // Set in quadrants
             //if (tt == 0) {
-            //    svg += utils.translate(spadeTopLeft(), i*10, j*10);
+            //    svg += utils.translate(diamondTopLeft(), i*10, j*10);
             //} else if (tt == 2) {
-            //    svg += utils.translate(spadeTopRight(), i*10, j*10);
+            //    svg += utils.translate(diamondTopRight(), i*10, j*10);
             //} else if (tt == 1) {
-            //    svg += utils.translate(spadeBottomLeft(), i*10, j*10);
+            //    svg += utils.translate(diamondBottomLeft(), i*10, j*10);
             //} else {
-            //    svg += utils.translate(spadeBottomRight(), i*10, j*10);
+            //    svg += utils.translate(diamondBottomRight(), i*10, j*10);
             //}
         }
     }
