@@ -3,159 +3,176 @@ import * as utils from "../Toolkit/utils.js";
 let redColor = "black";
 let blackColor = "black";
 
+let size = 160;
+let strokeWidth = (0.25/100) * size;
+
 // Diamonds
 let diamondTopLeft = () => {
     let tile = ``;
-    tile += utils.arc({x1: 2, y1: 10, x2: 10, y2: 2, cx: 8, cy: 8, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 0, y1: 2, x2: 2, y2: 0, cx: 0.2, cy: 0.2, stroke: redColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 2, y1: 10, x2: 10, y2: 2, cx: 8, cy: 8, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 0, y1: 2, x2: 2, y2: 0, cx: 0.2, cy: 0.2, stroke: redColor, fill: "none"}, strokeWidth);
     return tile; 
 }
 
 let diamondTopRight = () => {
     let tile = ``;
-    tile += utils.arc({x1: 8, y1: 10, x2: 0, y2: 2, cx: 2, cy: 8, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 10, y1: 2, x2: 8, y2: 0, cx: 9.82, cy: 0.18, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 8, y1: 10, x2: 0, y2: 2, cx: 2, cy: 8, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 10, y1: 2, x2: 8, y2: 0, cx: 9.82, cy: 0.18, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 let diamondBottomLeft = () => {
     let tile = ``;
-    tile += utils.arc({x1: 2, y1: 0, x2: 10, y2: 8, cx: 8, cy: 2, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 0, y1: 8, x2: 2, y2: 10, cx: 0.18, cy: 9.82, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 2, y1: 0, x2: 10, y2: 8, cx: 8, cy: 2, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 0, y1: 8, x2: 2, y2: 10, cx: 0.18, cy: 9.82, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 let diamondBottomRight = () => {
     let tile = ``;
-    tile += utils.arc({x1: 0, y1: 8, x2: 8, y2: 0, cx: 2, cy: 2, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 10, y1: 8, x2: 8, y2: 10, cx: 9.82, cy: 9.82, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 0, y1: 8, x2: 8, y2: 0, cx: 2, cy: 2, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 10, y1: 8, x2: 8, y2: 10, cx: 9.82, cy: 9.82, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 // Spades
 let spadeTopLeft = () => {
     let tile = ``;
-    tile += utils.arc({x1: 2, y1: 10, x2: 6, y2: 6, cx: 3, cy: 6.5, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 6, y1: 6, x2: 10, y2: 2, cx: 9, cy: 6, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 2, y1: 10, x2: 6, y2: 6, cx: 3, cy: 6.5, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 6, y1: 6, x2: 10, y2: 2, cx: 9, cy: 6, stroke: blackColor, fill: "none"}, strokeWidth);
 
-    tile += utils.arc({x1: 0, y1: 2, x2: 1.2, y2: 1.2, cx: 0.6, cy: 1.3, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 1.2, y1: 1.2, x2: 2, y2: 0, cx: 1.8, cy: 1.2, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 0, y1: 2, x2: 1.2, y2: 1.2, cx: 0.6, cy: 1.3, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 1.2, y1: 1.2, x2: 2, y2: 0, cx: 1.8, cy: 1.2, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 let spadeTopRight = () => {
     let tile = ``;
-    tile += utils.arc({x1: 8, y1: 10, x2: 4, y2: 6, cx: 7, cy: 6.5, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 4, y1: 6, x2: 0, y2: 2, cx: 1, cy: 6, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 10, y1: 2, x2: 8, y2: 0, cx: 8.2, cy: 1.8, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 8, y1: 10, x2: 4, y2: 6, cx: 7, cy: 6.5, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 4, y1: 6, x2: 0, y2: 2, cx: 1, cy: 6, stroke: blackColor, fill: "none"}, strokeWidth);
+
+    tile += utils.arc({x1: 10, y1: 2, x2: 8.8, y2: 1.2, cx: 9.4, cy: 1.3, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 8.8, y1: 1.2, x2: 8, y2: 0, cx: 8.2, cy: 1.2, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 let spadeBottomLeft = () => {
     let tile = ``;
-    tile += utils.arc({x1: 2, y1: 0, x2: 4, y2: 4, cx: 2, cy: 3, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 4, y1: 4, x2: 9, y2: 2, cx: 8, cy: 5, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 9, y1: 2, x2: 3, y2: 8, cx: 9, cy: 8, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.line({x1: 3, y1: 8, x2: 10, y2: 8, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 0, y1: 8, x2: 2, y2: 10, cx: 1.8, cy: 8.2, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 2, y1: 0, x2: 4, y2: 4, cx: 2, cy: 3, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 4, y1: 4, x2: 9, y2: 2, cx: 8, cy: 5, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 9, y1: 2, x2: 3, y2: 8, cx: 9, cy: 8, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.line({x1: 3, y1: 8, x2: 10, y2: 8, stroke: blackColor, fill: "none"}, strokeWidth);
+    
+    tile += utils.arc({x1: 0, y1: 8, x2: 1.2, y2: 8.8, cx: 0.6, cy: 8.7, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 1.2, y1: 8.8, x2: 2, y2: 10, cx: 1.8, cy: 8.8, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 let spadeBottomRight = () => {
     let tile = ``;
-    tile += utils.arc({x1: 8, y1: 0, x2: 6, y2: 4, cx: 8, cy: 3, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 6, y1: 4, x2: 1, y2: 2, cx: 2, cy: 5, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 1, y1: 2, x2: 7, y2: 8, cx: 1, cy: 8, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.line({x1: 7, y1: 8, x2: 0, y2: 8, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 10, y1: 8, x2: 8, y2: 10, cx: 8.2, cy: 8.2, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 8, y1: 0, x2: 6, y2: 4, cx: 8, cy: 3, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 6, y1: 4, x2: 1, y2: 2, cx: 2, cy: 5, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 1, y1: 2, x2: 7, y2: 8, cx: 1, cy: 8, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.line({x1: 7, y1: 8, x2: 0, y2: 8, stroke: blackColor, fill: "none"}, strokeWidth);
+
+    tile += utils.arc({x1: 10, y1: 8, x2: 8.8, y2: 8.8, cx: 9.4, cy: 8.7, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 8.8, y1: 8.8, x2: 8, y2: 10, cx: 8.2, cy: 8.8, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 // Clubs
 let clubTopLeft = () => {
     let tile = ``;
-    tile += utils.arc({x1: 2, y1: 10, x2: 5, y2: 7, cx: 2.5, cy: 7.5, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 5, y1: 7, x2: 9, y2: 9, cx: 8, cy: 7, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 8.5, y1: 8.25, x2: 6.5, y2: 4.75, cx: 6.5, cy: 7, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 6.5, y1: 4.75, x2: 10, y2: 2, cx: 7, cy: 2, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 0, y1: 2, x2: 2, y2: 0, cx: 1.8, cy: 1.8, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 2, y1: 10, x2: 5, y2: 7, cx: 2.5, cy: 7.5, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 5, y1: 7, x2: 9, y2: 9, cx: 8, cy: 7, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 8.5, y1: 8.25, x2: 6.5, y2: 4.75, cx: 6.5, cy: 7, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 6.5, y1: 4.75, x2: 10, y2: 2, cx: 7, cy: 2, stroke: blackColor, fill: "none"}, strokeWidth);
+
+    tile += utils.arc({x1: 0, y1: 2, x2: 1.6, y2: 1.6, cx: 1, cy: 3, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 1.6, y1: 1.6, x2: 2, y2: 0, cx: 3, cy: 1, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 let clubTopRight = () => {
     let tile = ``;
-    tile += utils.arc({x1: 8, y1: 10, x2: 5, y2: 7, cx: 7.5, cy: 7.5, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 5, y1: 7, x2: 1, y2: 9, cx: 2, cy: 7, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 1.5, y1: 8.25, x2: 3.5, y2: 4.75, cx: 3.5, cy: 7, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 3.5, y1: 4.75, x2: 0, y2: 2, cx: 3, cy: 2, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 10, y1: 2, x2: 8, y2: 0, cx: 8.2, cy: 1.8, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 8, y1: 10, x2: 5, y2: 7, cx: 7.5, cy: 7.5, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 5, y1: 7, x2: 1, y2: 9, cx: 2, cy: 7, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 1.5, y1: 8.25, x2: 3.5, y2: 4.75, cx: 3.5, cy: 7, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 3.5, y1: 4.75, x2: 0, y2: 2, cx: 3, cy: 2, stroke: blackColor, fill: "none"}, strokeWidth);
+
+    tile += utils.arc({x1: 10, y1: 2, x2: 8.4, y2: 1.6, cx: 9, cy: 3, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 8.4, y1: 1.6, x2: 8, y2: 0, cx: 7, cy: 1, stroke: blackColor, fill: "none"}, strokeWidth);    
     return tile;
 }
 
 let clubBottomLeft = () => {
     let tile = ``;
-    tile += utils.arc({x1: 2, y1: 0, x2: 4, y2: 4, cx: 2, cy: 3, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 4, y1: 4, x2: 9, y2: 2, cx: 8, cy: 5, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.line({x1: 9, y1: 2, x2: 8, y2: 8, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.line({x1: 8, y1: 8, x2: 10, y2: 8, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 0, y1: 8, x2: 2, y2: 10, cx: 1.8, cy: 8.2, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 2, y1: 0, x2: 4, y2: 4, cx: 2, cy: 3, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 4, y1: 4, x2: 9, y2: 2, cx: 8, cy: 5, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.line({x1: 9, y1: 2, x2: 8, y2: 8, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.line({x1: 8, y1: 8, x2: 10, y2: 8, stroke: blackColor, fill: "none"}, strokeWidth);
+
+    tile += utils.arc({x1: 0, y1: 8, x2: 1.6, y2: 8.4, cx: 1, cy: 7, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 1.6, y1: 8.4, x2: 2, y2: 10, cx: 3, cy: 9, stroke: blackColor, fill: "none"}, strokeWidth);    
     return tile;
 }
 
 let clubBottomRight = () => {
     let tile = ``;
-    tile += utils.arc({x1: 8, y1: 0, x2: 6, y2: 4, cx: 8, cy: 3, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 6, y1: 4, x2: 1, y2: 2, cx: 2, cy: 5, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.line({x1: 1, y1: 2, x2: 2, y2: 8, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.line({x1: 2, y1: 8, x2: 0, y2: 8, stroke: blackColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 10, y1: 8, x2: 8, y2: 10, cx: 8.2, cy: 8.2, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 8, y1: 0, x2: 6, y2: 4, cx: 8, cy: 3, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 6, y1: 4, x2: 1, y2: 2, cx: 2, cy: 5, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.line({x1: 1, y1: 2, x2: 2, y2: 8, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.line({x1: 2, y1: 8, x2: 0, y2: 8, stroke: blackColor, fill: "none"}, strokeWidth);
+
+    tile += utils.arc({x1: 10, y1: 8, x2: 8.4, y2: 8.4, cx: 9, cy: 7, stroke: blackColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 8.4, y1: 8.4, x2: 8, y2: 10, cx: 7, cy: 9, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 // Hearts
 let heartTopLeft = () => {
     let tile = ``;
-    tile += utils.arc({x1: 1.9, y1: 10, x2: 3, y2: 9, cx: 3, cy: 10, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 3.05, y1: 9.1, x2: 1.5, y2: 5, cx: 1.5, cy: 7, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 1.5, y1: 5, x2: 5, y2: 2.25, cx: 1.5, cy: 2, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 5, y1: 2.25, x2: 7, y2: 3, cx: 6, cy: 2.25, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 7, y1: 3, x2: 10, y2: 2, cx: 9, cy: 4.5, stroke: redColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 1.9, y1: 10, x2: 3, y2: 9, cx: 3, cy: 10, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 3.05, y1: 9.1, x2: 1.5, y2: 5, cx: 1.5, cy: 7, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 1.5, y1: 5, x2: 5, y2: 2.25, cx: 1.5, cy: 2, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 5, y1: 2.25, x2: 7, y2: 3, cx: 6, cy: 2.25, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 7, y1: 3, x2: 10, y2: 2, cx: 9, cy: 4.5, stroke: redColor, fill: "none"}, strokeWidth);
     
-    tile += utils.arc({x1: 0, y1: 2, x2: 2, y2: 0, cx: 1.8, cy: 1.8, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 0, y1: 2, x2: 2, y2: 0, cx: 2.5, cy: 2.5, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 let heartTopRight = () => {
     let tile = ``;
-    tile += utils.arc({x1: 8.1, y1: 10, x2: 7, y2: 9, cx: 7, cy: 10, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 6.95, y1: 9.1, x2: 8.5, y2: 5, cx: 8.5, cy: 7, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 8.5, y1: 5, x2: 5, y2: 2.25, cx: 8.5, cy: 2, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 5, y1: 2.25, x2: 3, y2: 3, cx: 4, cy: 2.25, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 3, y1: 3, x2: 0, y2: 2, cx: 1, cy: 4.5, stroke: redColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 8.1, y1: 10, x2: 7, y2: 9, cx: 7, cy: 10, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 6.95, y1: 9.1, x2: 8.5, y2: 5, cx: 8.5, cy: 7, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 8.5, y1: 5, x2: 5, y2: 2.25, cx: 8.5, cy: 2, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 5, y1: 2.25, x2: 3, y2: 3, cx: 4, cy: 2.25, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 3, y1: 3, x2: 0, y2: 2, cx: 1, cy: 4.5, stroke: redColor, fill: "none"}, strokeWidth);
 
-    tile += utils.arc({x1: 10, y1: 2, x2: 8, y2: 0, cx: 8.2, cy: 1.8, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 10, y1: 2, x2: 8, y2: 0, cx: 7.5, cy: 2.5, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 let heartBottomLeft = () => {
     let tile = ``;
-    tile += utils.arc({x1: 2, y1: 0, x2: 10, y2: 8, cx: 6.5, cy: 2, stroke: redColor, fill: "none"}, 0.25);
-    tile += utils.arc({x1: 0, y1: 8, x2: 2, y2: 10, cx: 1.8, cy: 8.2, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 2, y1: 0, x2: 10, y2: 8, cx: 6.5, cy: 2, stroke: redColor, fill: "none"}, strokeWidth);
+    tile += utils.arc({x1: 0, y1: 8, x2: 2, y2: 10, cx: 2.5, cy: 7.5, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 let heartBottomRight = () => {
     let tile = ``;
-    tile += utils.arc({x1: 8, y1: 0, x2: 0, y2: 8, cx: 3.5, cy: 2, stroke: redColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 8, y1: 0, x2: 0, y2: 8, cx: 3.5, cy: 2, stroke: redColor, fill: "none"}, strokeWidth);
 
-    tile += utils.arc({x1: 10, y1: 8, x2: 8, y2: 10, cx: 8.2, cy: 8.2, stroke: blackColor, fill: "none"}, 0.25);
+    tile += utils.arc({x1: 10, y1: 8, x2: 8, y2: 10, cx: 7.5, cy: 7.5, stroke: blackColor, fill: "none"}, strokeWidth);
     return tile;
 }
 
 let allTiles = () => {
     let svg = ``;
-    for (let i = 0; i < 20; i++) {
-        for (let j = 0; j < 20; j++) {
+    for (let i = 0; i < size/10; i++) {
+        for (let j = 0; j < size/10; j++) {
             let tI = (i%2) * 2;
             let tJ = j%2;
             let tt = tI + tJ;
@@ -256,7 +273,7 @@ let allTiles = () => {
 }
 
 // Wrap SVGS
-let svgAllTiles = utils.wrapSvg({ x: 0, y: 0, w: 200, h: 200 }, 500, 500, allTiles());
+let svgAllTiles = utils.wrapSvg({ x: 0, y: 0, w: size, h: size }, 500, 500, allTiles());
 
 // Array of all SVGS
 const allSvgs = [
