@@ -97,7 +97,6 @@ const generateFloatField = (w, h) => {
     }
     return arr;
 }
-
 const accessFloatField = (arr, x, y) => {
     return arr[x][y];
 }
@@ -116,7 +115,7 @@ const svgToElementById = (allSvgs, id) => {
 //#endregion
 //#region Wrap SVG - Wraps given text in an SVG with given viewbox and size vars
 const wrapSvg = ({x, y, w, h}, pW, pH, svg) => {
-    return `<svg width="${pW}px" height="${pH}px" viewbox="${x}, ${y}, ${w}, ${h}">
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${pW}px" height="${pH}px" viewbox="${x}, ${y}, ${w}, ${h}">
                         ${svg}
                     </svg>`
 }

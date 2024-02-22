@@ -3,8 +3,8 @@ import * as utils from "../Toolkit/utils.js";
 let redColor = "black";
 let blackColor = "black";
 
-let size = 160;
-let strokeWidth = (0.25/100) * size;
+let size = 400;
+let strokeWidth = 0.25; //(0.25/100) * size;
 
 // Diamonds
 let diamondTopLeft = () => {
