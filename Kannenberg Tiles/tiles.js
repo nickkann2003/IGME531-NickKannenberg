@@ -7,11 +7,11 @@ let noise = perlin.createNoise2D();
 let redColor = "#CCCCCC";
 let blackColor = "#CCCCCC";
 
-let r1 = 255;
-let g1 = 30;
-let b1 = 60;
+let r1 = 180;
+let g1 = 10;
+let b1 = 20;
 
-let r2 = 100;
+let r2 = 120;
 let g2 = 10;
 let b2 = 20;
 
@@ -25,9 +25,9 @@ let rDif = r2 - r1;
 let gDif = g2 - g1;
 let bDif = b2-b1;
 let diamondColor = utils.rgbToHex(r1 + rDif * (0/3) , g1 + gDif * (0/3), b1 + bDif * (0/3));
-let spadeColor = utils.rgbToHex(r1 + rDif * (1.0/3.0) , g1 + gDif * (1.0/3.0), b1 + bDif * (1.0/3.0));
+let spadeColor = utils.rgbToHex(r1 + rDif * (3.0/3.0) , g1 + gDif * (3.0/3.0), b1 + bDif * (1.0/3.0));
 let clubColor = utils.rgbToHex(r1 + rDif * (2.0/3.0) , g1 + gDif * (2.0/3.0), b1 + bDif * (2.0/3.0));
-let heartColor = utils.rgbToHex(r1 + rDif * (3.0/3.0) , g1 + gDif * (3.0/3.0), b1 + bDif * (3.0/3.0));
+let heartColor = utils.rgbToHex(r1 + rDif * (1.0/3.0) , g1 + gDif * (1.0/3.0), b1 + bDif * (3.0/3.0));
 
 // Diamonds
 let diamondTopLeft = () => {
