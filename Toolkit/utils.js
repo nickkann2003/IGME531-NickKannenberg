@@ -47,6 +47,7 @@ const polygon = (pointArr, stroke, fill, strokeWeight = 1) => {
 }
 //#endregion
 //#endregion
+//#endregion
 
 //#region ------------------ Group/Transform Transform Controls ----------------
 //#region Group Function - Takes an array of elements and returns a group with each element
@@ -120,6 +121,27 @@ const wrapSvg = ({x, y, w, h}, pW, pH, svg) => {
                     </svg>`
 }
 //#endregion
+//#region Integer to Hex - Converts an integer to a hex string
+const integerToHex = (int) => {
+        const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+        int = Math.floor(int);
+        if (int <= 0){
+            return "00";
+        }
+        let hex = "";
+        while (int > 0) {
+            let digit = int % 16;
+            hex = digits[digit] + hex;
+            int = Math.floor(int / 16);
+        }
+        return hex.toString().padStart(2, '0');
+    }
+//#endregion
+//#region RGB to Hex - Converts an integer to a hex string
+const rgbToHex = (r, g, b) => {
+    return "#" + integerToHex(r) + integerToHex(g) + integerToHex(b);
+}
+//#endregion
 //#endregion
 
 // Exports:
@@ -130,4 +152,4 @@ export { group, scale, rotate, rotateP, translate }
 // Randomness/Noise Functions
 export { generateFloatField, accessFloatField}
 // Utility/Display Functions
-export { svgToElement, svgToElementById, wrapSvg}
+export { svgToElement, svgToElementById, wrapSvg, integerToHex, rgbToHex}
