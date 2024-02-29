@@ -43,7 +43,7 @@ const makeVisual = (lindemayerString) => {
     }
 
     for(let i = 0; i < lindemayerString.length; i ++){
-        
+        moveForward();
     }
 }
 
