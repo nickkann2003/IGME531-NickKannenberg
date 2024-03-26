@@ -7,23 +7,29 @@ let noise = perlin.createNoise2D();
 let redColor = "#CCCCCC";
 let blackColor = "#CCCCCC";
 
-let r1 = 180;
-let g1 = 10;
-let b1 = 20;
+let backgroundColor = "#000000";
 
-let r2 = 120;
-let g2 = 10;
-let b2 = 20;
+let r1 = 255;
+let g1 = 255;
+let b1 = 255;
+
+let r2 = 255;
+let g2 = 255;
+let b2 = 255;
 
 let scaleVal = 32;
-let size = 800;
+let size = 400;
 let strokeWidth = (0.25/100) * size;
+strokeWidth = 0.75;
 
 let noiseCutoffs = [-0.5, 0.0, 0.5];
+
+let usingNoise = false;
 
 let rDif = r2 - r1;
 let gDif = g2 - g1;
 let bDif = b2-b1;
+
 let diamondColor = utils.rgbToHex(r1 + rDif * (0/3) , g1 + gDif * (0/3), b1 + bDif * (0/3));
 let spadeColor = utils.rgbToHex(r1 + rDif * (3.0/3.0) , g1 + gDif * (3.0/3.0), b1 + bDif * (1.0/3.0));
 let clubColor = utils.rgbToHex(r1 + rDif * (2.0/3.0) , g1 + gDif * (2.0/3.0), b1 + bDif * (2.0/3.0));
@@ -194,6 +200,7 @@ let heartBottomRight = () => {
 
 let allTiles = () => {
     let svg = ``;
+    svg += utils.rect({x: 0, y: 0, w: size*2, h: size*2, stroke: "#FFFFFF", fill: backgroundColor})
     for (let i = 0; i < size/10; i++) {
         for (let j = 0; j < size/10; j++) {
             let tI = (i%2) * 2;
@@ -247,7 +254,9 @@ let allTiles = () => {
             
 
             // Set in quadrants
-            random = noise(i / scaleVal, j / scaleVal);
+            if(usingNoise){
+                random = noise(i / scaleVal, j / scaleVal);
+            }
             //console.log(noise(i / scaleVal, j / scaleVal));
             if(tt == 0){
                 if (random < noiseCutoffs[0]) {
