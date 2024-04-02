@@ -13,7 +13,7 @@
             height: 90vmin;
             margin: auto;
             outline: 1px solid black;
-            
+
         }
 
         div:has(#render) {
@@ -25,7 +25,7 @@
             justify-content: center;
         }
 
-        button {         
+        button {
             font-size: 1.25em;
             width: fit-content;
             height: fit-content;
@@ -34,7 +34,7 @@
             right: 10px;
         }
     </style>
-</code_to_rewrite>
+    </code_to_rewrite>
 </head>
 
 <body>
@@ -48,6 +48,7 @@
     <script type="module" language="javascript">
         import { render } from './render.js';
         import * as items from './items.js';
+        import * as utils from '../Toolkit/utils.js';
 
         const { booleans, colors, primitives, transforms } = jscadModeling // modeling comes from the included MODELING library
 
@@ -57,14 +58,45 @@
 
         //EDITING PARAMS
         const vp = {
-            sizeMod: 2/3,
-            paramMod: 3/4
+            sizeMod: 2 / 3,
+            paramMod: 3 / 4
         }
 
         const demo = (parameters) => {
             const size = parameters.size;
 
-            return items.sierpinski_thingy(parameters, vp, 5);
+            //return items.sierpinski_thingy(parameters, vp, 5);
+            let lindenmayerString = items.iterateNTimes(4);
+            //return items.makeVisual({
+            //    lineLength: 5,
+            //    angle: 25,
+            //    startingPoint: [0, 0, 0]
+            //}, lindenmayerString);
+
+            const ops = { lineLength: 2, angle: 20 }
+
+            return transforms.rotate([utils.degToRad(-90), 0, 0],
+                union(
+                    transforms.rotate([0, 0, utils.degToRad(-20)], items.makeVisual({
+                        lineLength: ops.lineLength,
+                        angle: ops.angle,
+                        startingPoint: [0, 0, 0]
+                    }, lindenmayerString)),
+                    transforms.rotate([utils.degToRad(-20), utils.degToRad(90), 0], items.makeVisual({
+                        lineLength: ops.lineLength,
+                        angle: ops.angle,
+                        startingPoint: [0, 0, 0]
+                    }, lindenmayerString)),
+                    transforms.rotate([0, utils.degToRad(180), utils.degToRad(20)], items.makeVisual({
+                        lineLength: ops.lineLength,
+                        angle: ops.angle,
+                        startingPoint: [0, 0, 0]
+                    }, lindenmayerString)),
+                    transforms.rotate([utils.degToRad(20), utils.degToRad(270), 0], items.makeVisual({
+                        lineLength: ops.lineLength,
+                        angle: ops.angle,
+                        startingPoint: [0, 0, 0]
+                    }, lindenmayerString))));
         }
 
         render(document.getElementById("render"), demo({ size: 300 }))

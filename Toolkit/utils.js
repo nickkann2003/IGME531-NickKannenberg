@@ -142,6 +142,11 @@ const rgbToHex = (r, g, b) => {
     return "#" + integerToHex(r) + integerToHex(g) + integerToHex(b);
 }
 //#endregion
+//#region Degrees to Radians - Converts a degree value to a radian value
+const degToRad = (deg) => {
+    return deg * (Math.PI/180.0);
+}
+//#endregion
 //#endregion
 
 // Exports:
@@ -152,4 +157,4 @@ export { group, scale, rotate, rotateP, translate }
 // Randomness/Noise Functions
 export { generateFloatField, accessFloatField}
 // Utility/Display Functions
-export { svgToElement, svgToElementById, wrapSvg, integerToHex, rgbToHex}
+export { svgToElement, svgToElementById, wrapSvg, integerToHex, rgbToHex, degToRad}
