@@ -1,0 +1,13 @@
+Cone of probability
+Cone decides possible rotations and directions a branch can extend to
+Cone's angle and min/max distance is based on a combination of current nodes rotation AND all previous nodes along that branch
+
+Cone angle phi = Current Nodes Angle (0.5 weight) + Sum of all previous node angles (0.5 weight)
+Angle decision is made randomly, weighted towards the outer edges (Radius R from center of cone, Angle Theta about cone center, Length l of branch)
+coneMin = VAR(prevL * 0.6)
+coneMax = VAR(prevL * 0.7)
+branchWidth = L * VAR(0.1)
+
+Radius r = sqrt(random(0,1))
+Theta = randm(0,2PI)
+l = random(coneMin, coneMax)
