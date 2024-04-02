@@ -5,7 +5,7 @@ const { booleans, colors, primitives, transforms, hulls } = jscadModeling // mod
 
 const { intersect, subtract, union } = booleans
 const { colorize, colorNameToRgb } = colors
-const { cube, sphere } = primitives
+const { cube, sphere, cylinderElliptic } = primitives
 
 const sierpinski_thingy = (parameters, vp, iterations = 0) => {
     const size = parameters.size * vp.sizeMod;
@@ -71,13 +71,16 @@ const makeVisual = (options, lindenmayerString) => {
     let stack = [];
 
     // Basically constants
-    let angle = (options.angle || 25) * Math.PI / 180;
+    let angle = (-options.angle) * (Math.PI / 180);
+    let angleZ = (-options.angleZ) * (Math.PI/180);
     let startingPoint = options.startingPoint || [0, 0, 0];
     let lineLength = options.lineLength || 10;
+    let cubeSize = options.startingSize || 1;
+    let sizeMod = options.sizeMod || 0.1;
 
     // State
-    let rotation = -75 * Math.PI / 180;
-    let rotationZ = 0 * Math.PI/180
+    let rotation = options.startingAngle || -75 * Math.PI / 180;
+    let rotationZ = options.startingAngleZ || 0 * Math.PI/180;
     let points = [[startingPoint]];
 
     const moveForward = () => {
@@ -85,7 +88,7 @@ const makeVisual = (options, lindenmayerString) => {
 
         const dx = Math.cos(rotation) * lineLength;
         const dy = Math.sin(rotation) * lineLength;
-        const dz = Math.cos(rotationZ) * lineLength;
+        const dz = Math.sin(rotationZ) * lineLength;
 
         points[points.length - 1].push([lastPoint[0] + dx, lastPoint[1] + dy, lastPoint[2] + dz]);
     };
@@ -97,16 +100,20 @@ const makeVisual = (options, lindenmayerString) => {
     const popFromList = () => {
         let item = stack.pop();
         rotation = item.rotation;
-        rotationZ = -item.rotationZ;
+        rotationZ = item.rotationZ;
         
         // 3D Code
         let cubeLine = [];
         for(let i = 0; i < points[points.length-1].length; i ++){
-            cubeLine.push(cube({center: [points[points.length-1][i][0], points[points.length-1][i][1], points[points.length-1][i][2]]}));
+            cubeLine.push(cube({center: [points[points.length-1][i][0], points[points.length-1][i][1], points[points.length-1][i][2]], size: cubeSize}));
         }
+
+        console.log(cubeSize);
         
-        cubeLine.push(cube({center: [item.position[0], item.position[1], item.position[2]]}));
-        allShapes.push(jscadModeling.hulls.hullChain(cubeLine));
+        if(cubeLine.length > 1){
+            allShapes.push(jscadModeling.hulls.hullChain(cubeLine));
+        }
+        //allShapes.push(cylinderElliptic({height: 0.2, startRadius: [0.5, 0.25], endRadius: [0.8, 0.6]}));
         points.push([item.position]);
     }
 
@@ -119,16 +126,18 @@ const makeVisual = (options, lindenmayerString) => {
         },
         '+': () => {
             rotation = rotation - angle;
-            rotationZ = rotationZ - angle*6;
+            rotationZ = rotationZ - angleZ;
         },
         '-': () => {
             rotation = rotation + angle;
-            rotationZ = rotation + angle*6;
+            rotationZ = rotationZ - angleZ;
         },
         '[': () => {
+            cubeSize += sizeMod;
             pushToList({ position: points[points.length - 1][points[points.length - 1].length - 1], rotation, rotationZ });
         },
         ']': () => {
+            cubeSize -= sizeMod;
             popFromList();
         }
     };

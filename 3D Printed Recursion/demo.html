@@ -41,6 +41,10 @@
     <script src="https://unpkg.com/@jscad/modeling" id="MODELING"></script>
     <script src="https://unpkg.com/@jscad/regl-renderer"></script>
 
+    <div id="controls">
+
+    </div>
+
     <div>
         <div id="render"></div>
     </div>
@@ -73,30 +77,35 @@
             //    startingPoint: [0, 0, 0]
             //}, lindenmayerString);
 
-            const ops = { lineLength: 2, angle: 20 }
+            const ops = {
+                lineLength: 3,
+                angle: 8,
+                angleZ: 5,
+                startingAngle: utils.degToRad(0),
+                startingAngleZ: utils.degToRad(-20),
+                startingSize: 0.1,
+                sizeMod: 0.2,
+                startingPoint: [0,0,0]
+            }
+
+            const rots = [
+                [utils.degToRad(10), utils.degToRad(0), utils.degToRad(0)],
+                [utils.degToRad(0), utils.degToRad(90), utils.degToRad(-10)],
+                [utils.degToRad(10), utils.degToRad(180), utils.degToRad(0)],
+                [utils.degToRad(0), utils.degToRad(270), utils.degToRad(10)]
+            ];
+
+            let visual = items.makeVisual(ops, lindenmayerString);
+
+            // Testing purposes
+            //return visual;
 
             return transforms.rotate([utils.degToRad(-90), 0, 0],
                 union(
-                    transforms.rotate([0, 0, utils.degToRad(-20)], items.makeVisual({
-                        lineLength: ops.lineLength,
-                        angle: ops.angle,
-                        startingPoint: [0, 0, 0]
-                    }, lindenmayerString)),
-                    transforms.rotate([utils.degToRad(-20), utils.degToRad(90), 0], items.makeVisual({
-                        lineLength: ops.lineLength,
-                        angle: ops.angle,
-                        startingPoint: [0, 0, 0]
-                    }, lindenmayerString)),
-                    transforms.rotate([0, utils.degToRad(180), utils.degToRad(20)], items.makeVisual({
-                        lineLength: ops.lineLength,
-                        angle: ops.angle,
-                        startingPoint: [0, 0, 0]
-                    }, lindenmayerString)),
-                    transforms.rotate([utils.degToRad(20), utils.degToRad(270), 0], items.makeVisual({
-                        lineLength: ops.lineLength,
-                        angle: ops.angle,
-                        startingPoint: [0, 0, 0]
-                    }, lindenmayerString))));
+                    transforms.rotate(rots[0], visual),
+                    transforms.rotate(rots[1], visual),
+                    transforms.rotate(rots[2], visual),
+                    transforms.rotate(rots[3], visual)));
         }
 
         render(document.getElementById("render"), demo({ size: 300 }))
