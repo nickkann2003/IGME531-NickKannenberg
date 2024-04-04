@@ -70,7 +70,8 @@
             const size = parameters.size;
 
             //return items.sierpinski_thingy(parameters, vp, 5);
-            let lindenmayerString = items.iterateNTimes(4);
+            let lindenmayerString = items.iterateNTimes(5);
+            console.log(lindenmayerString);
             //return items.makeVisual({
             //    lineLength: 5,
             //    angle: 25,
@@ -78,12 +79,12 @@
             //}, lindenmayerString);
 
             const ops = {
-                lineLength: 3,
-                angle: 8,
-                angleZ: 5,
+                lineLength: 4,
+                angle: 15,
+                angleZ: 8,
                 startingAngle: utils.degToRad(0),
                 startingAngleZ: utils.degToRad(-20),
-                startingSize: 0.1,
+                startingSize: 1,
                 sizeMod: 0.2,
                 startingPoint: [0,0,0]
             }
@@ -92,7 +93,11 @@
                 [utils.degToRad(10), utils.degToRad(0), utils.degToRad(0)],
                 [utils.degToRad(0), utils.degToRad(90), utils.degToRad(-10)],
                 [utils.degToRad(10), utils.degToRad(180), utils.degToRad(0)],
-                [utils.degToRad(0), utils.degToRad(270), utils.degToRad(10)]
+                [utils.degToRad(0), utils.degToRad(270), utils.degToRad(10)],
+                [utils.degToRad(45), utils.degToRad(0), utils.degToRad(-40)],
+                [utils.degToRad(40), utils.degToRad(90), utils.degToRad(45)],
+                [utils.degToRad(45), utils.degToRad(180), utils.degToRad(40)],
+                [utils.degToRad(40), utils.degToRad(270), utils.degToRad(45)]
             ];
 
             let visual = items.makeVisual(ops, lindenmayerString);

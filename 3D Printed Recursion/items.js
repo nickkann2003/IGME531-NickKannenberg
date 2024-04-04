@@ -36,12 +36,15 @@ const branchFromCone = (coneParams) => {
     return transforms.translate(conePositionVector,)
 }
 
-let alphabet = ['X', 'F', '+', '-', '[', ']'];
+let alphabet = ['X', 'F', '+', '-', '[', ']', 'A', 'B', 'C'];
 const axiom = 'X';
 const rules = {
     //'X': 'F+[[X]-X]-[X]',
     'X': 'F+[[X]-X]-F[-FX]+X',
-    'F': 'FF',
+    'F': 'FFA',
+    'A': 'B',
+    'B': 'C',
+    'C': '-F',
     '-': '-',
     '+': '+',
     '[': '[',
@@ -107,8 +110,6 @@ const makeVisual = (options, lindenmayerString) => {
         for(let i = 0; i < points[points.length-1].length; i ++){
             cubeLine.push(cube({center: [points[points.length-1][i][0], points[points.length-1][i][1], points[points.length-1][i][2]], size: cubeSize}));
         }
-
-        console.log(cubeSize);
         
         if(cubeLine.length > 1){
             allShapes.push(jscadModeling.hulls.hullChain(cubeLine));
@@ -124,13 +125,47 @@ const makeVisual = (options, lindenmayerString) => {
         'X': () => {
             return;
         },
+        'A': () => {
+            return;
+        },
+        'B': () => {
+            return;
+        },
+        'C': () => {
+            return;
+        },
+        'D': () => {
+            return;
+        },
         '+': () => {
-            rotation = rotation - angle;
-            rotationZ = rotationZ - angleZ;
+            //rotation = rotation - angle;
+            if(rotation <= 0){
+                rotation = rotation - angle;
+            }else{
+                rotation = rotation * -1;
+                rotation = rotation - angle;
+            }
+            if(rotationZ <= 0){
+                rotationZ = rotationZ - angleZ;
+            }else{
+                rotationZ = rotationZ * -1;
+                rotationZ = rotationZ + angleZ;
+            }
         },
         '-': () => {
-            rotation = rotation + angle;
-            rotationZ = rotationZ - angleZ;
+            //rotation = rotation + angle;
+            if(rotation >= 0){
+                rotation = rotation + angle;
+            }else{
+                rotation = rotation * -1;
+                rotation = rotation + angle;
+            }
+            if(rotationZ >= 0){
+                rotationZ = rotationZ + angleZ;
+            }else{
+                rotationZ = rotationZ * -1;
+                rotationZ = rotationZ - angleZ;
+            }
         },
         '[': () => {
             cubeSize += sizeMod;
