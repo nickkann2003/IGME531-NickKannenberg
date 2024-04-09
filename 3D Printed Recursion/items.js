@@ -44,7 +44,7 @@ const rules = {
     'F': 'FFA',
     'A': 'B',
     'B': 'C',
-    'C': '-F',
+    'C': '-F+F',
     '-': '-',
     '+': '+',
     '[': '[',
@@ -143,13 +143,14 @@ const makeVisual = (options, lindenmayerString) => {
                 rotation = rotation - angle;
             }else{
                 rotation = rotation * -1;
-                rotation = rotation - angle;
+                rotation = rotation + angle;
             }
-            if(rotationZ <= 0){
-                rotationZ = rotationZ - angleZ;
-            }else{
+            if(rotationZ >= 0){
                 rotationZ = rotationZ * -1;
                 rotationZ = rotationZ + angleZ;
+            }else{
+                rotationZ = rotationZ * -1;
+                rotationZ = rotationZ - angleZ;
             }
         },
         '-': () => {
@@ -161,6 +162,7 @@ const makeVisual = (options, lindenmayerString) => {
                 rotation = rotation + angle;
             }
             if(rotationZ >= 0){
+                rotationZ = rotationZ * -1;
                 rotationZ = rotationZ + angleZ;
             }else{
                 rotationZ = rotationZ * -1;

@@ -58,12 +58,12 @@
 
         const { intersect, subtract, union } = booleans
         const { colorize, colorNameToRgb } = colors
-        const { cube, sphere } = primitives
+        const { cube, sphere, cuboid } = primitives
 
         //EDITING PARAMS
         const vp = {
-            sizeMod: 2 / 3,
-            paramMod: 3 / 4
+            sizeMod: 6/7,
+            paramMod: 4 / 5
         }
 
         const demo = (parameters) => {
@@ -80,20 +80,21 @@
 
             const ops = {
                 lineLength: 4,
-                angle: 15,
-                angleZ: 8,
-                startingAngle: utils.degToRad(0),
-                startingAngleZ: utils.degToRad(-20),
+                angle: 12,
+                angleZ: 1,
+                startingAngle: utils.degToRad(-90),
+                startingAngleZ: utils.degToRad(0),
                 startingSize: 1,
                 sizeMod: 0.2,
                 startingPoint: [0,0,0]
             }
 
             const rots = [
-                [utils.degToRad(10), utils.degToRad(0), utils.degToRad(0)],
-                [utils.degToRad(0), utils.degToRad(90), utils.degToRad(-10)],
-                [utils.degToRad(10), utils.degToRad(180), utils.degToRad(0)],
-                [utils.degToRad(0), utils.degToRad(270), utils.degToRad(10)],
+                [utils.degToRad(0), utils.degToRad(0), utils.degToRad(0)],
+                [utils.degToRad(0), utils.degToRad(90), utils.degToRad(0)],
+                [utils.degToRad(0), utils.degToRad(180), utils.degToRad(0)],
+                [utils.degToRad(0), utils.degToRad(270), utils.degToRad(0)],
+
                 [utils.degToRad(45), utils.degToRad(0), utils.degToRad(-40)],
                 [utils.degToRad(40), utils.degToRad(90), utils.degToRad(45)],
                 [utils.degToRad(45), utils.degToRad(180), utils.degToRad(40)],
@@ -110,7 +111,9 @@
                     transforms.rotate(rots[0], visual),
                     transforms.rotate(rots[1], visual),
                     transforms.rotate(rots[2], visual),
-                    transforms.rotate(rots[3], visual)));
+                    transforms.rotate(rots[3], visual),
+                    cuboid({center: [0,-125,0], size: [4,300,4]})
+                    ));
         }
 
         render(document.getElementById("render"), demo({ size: 300 }))
