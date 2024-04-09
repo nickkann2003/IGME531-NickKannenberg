@@ -1,11 +1,12 @@
 import { render } from './render.js';
 import * as utils from '../Toolkit/utils.js';
 
-const { booleans, colors, primitives, transforms, hulls } = jscadModeling // modeling comes from the included MODELING library
+const { booleans, colors, primitives, transforms, hulls, measurements } = jscadModeling // modeling comes from the included MODELING library
 
 const { intersect, subtract, union } = booleans
 const { colorize, colorNameToRgb } = colors
 const { cube, sphere, cylinderElliptic } = primitives
+const { measureAggregateBoundingBox} = measurements;
 
 const sierpinski_thingy = (parameters, vp, iterations = 0) => {
     const size = parameters.size * vp.sizeMod;
@@ -184,6 +185,7 @@ const makeVisual = (options, lindenmayerString) => {
         toDo();
     }
 
+    console.log(jscadModeling.measurements.measureAggregateBoundingBox(allShapes));
     return allShapes;
 };
 
