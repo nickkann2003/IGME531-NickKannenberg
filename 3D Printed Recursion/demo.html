@@ -106,14 +106,14 @@
             // Testing purposes
             //return visual;
 
-            let shape = transforms.rotate([utils.degToRad(-90), 0, 0],
+            let shape = transforms.scale([0.4, 0.4, 0.4], transforms.rotate([utils.degToRad(-90), 0, 0],
                 union(
                     transforms.rotate(rots[0], visual),
                     transforms.rotate(rots[1], visual),
                     transforms.rotate(rots[2], visual),
                     transforms.rotate(rots[3], visual),
                     cuboid({center: [0,-125,0], size: [4,300,4]})
-                    ));
+                    )));
 
             console.log(jscadModeling.measurements.measureAggregateBoundingBox(shape));
 
