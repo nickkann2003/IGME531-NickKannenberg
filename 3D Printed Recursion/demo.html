@@ -106,7 +106,7 @@
             // Testing purposes
             //return visual;
 
-            let shape = transforms.scale([0.4, 0.4, 0.4], transforms.rotate([utils.degToRad(-90), 0, 0],
+            let shape = transforms.scale([0.2, 0.2, 0.2], transforms.rotate([utils.degToRad(-90), 0, 0],
                 union(
                     transforms.rotate(rots[0], visual),
                     transforms.rotate(rots[1], visual),
@@ -120,7 +120,7 @@
             return shape;
         }
 
-        render(document.getElementById("render"), demo({ size: 300 }))
+        render(document.getElementById("render"), demo({ size: 100 }))
 
     </script>
 </body>
